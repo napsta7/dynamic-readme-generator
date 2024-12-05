@@ -1,9 +1,10 @@
-// TODO: Include packages needed for this application✅
+// TODO: Include packages needed for this application
+//Here I imported the file system and inquirer packages, and imported the generateMarkdown function
 import fs from 'fs';
 import inquirer from 'inquirer';
 import { generateMarkdown } from './utils/generateMarkdown.js';
 
-// TODO: Create an array of questions for user input✅
+// TODO: Create an array of questions for user input
 const questions = [{
     message: "Please enter the title of your README:",
     name: "userTitle"
@@ -37,9 +38,9 @@ const questions = [{
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-    const generatedMarkdown = generateMarkdown(data); // Generate Markdown
+    const generatedMarkdown = generateMarkdown(data); // Variable that stores the generated markdown
   
-    fs.writeFile(fileName, generatedMarkdown, (err) => {
+    fs.writeFile(fileName, generatedMarkdown, (err) => { //If there is an error, the console will show the error, if the file was written to successfully, a message will log saying that the file was created successfully
       if (err) throw err;
       console.log('README.md file generated successfully!');
     });
@@ -47,14 +48,14 @@ function writeToFile(fileName, data) {
 
 // TODO: Create a function to initialize app
 function init() {
-    return inquirer.prompt(questions);
+    return inquirer.prompt(questions); //questions is the array of questions for the user that was defined earlier
 }
 
 // Function call to initialize app
-init()
-  .then(answers => {
-    writeToFile('README.md', answers); // Pass the answers to writeToFile
+init() 
+  .then(answers => { //This is called when the promise is resolved, and answers contains the information that the user put in
+    writeToFile('README.md', answers);
   })
-  .catch(error => {
+  .catch(error => { //If there is an error, the console will log an error message and then the error
     console.error('Error initializing app:', error);
   });
